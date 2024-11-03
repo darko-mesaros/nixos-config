@@ -6,7 +6,7 @@
     "$terminal" = "kitty";
     "$fileManager" = "dolphin";
     "$menu" = "rofi -show run";
-    exec-once = "waybar &";
+    #exec-once = "waybar &";
     bind = [
       "$mod SHIFT, RETURN, exec, $terminal"
       "$mod, W, killactive"
