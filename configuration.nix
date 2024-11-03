@@ -31,6 +31,8 @@
     wget
     git
     curl
+    htop
+    btop
   ];
 
   # Enable services

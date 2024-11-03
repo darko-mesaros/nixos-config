@@ -9,6 +9,10 @@
     ripgrep
     fd
     tree
+    figlet
+    lolcat
+    eza
+    ranger
   ];
 
   programs.git = {
@@ -27,6 +31,9 @@
     enable = true;
     shellAliases = {
       rebuild = "sudo nixos-rebuild switch --flake ~/nixos-config#framework_laptop";  # Replace hostname
+      ll = "eza -l";
+      l = "eza -la";
+      ls = "eza";
     };
   };
 
