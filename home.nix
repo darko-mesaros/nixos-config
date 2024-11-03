@@ -23,6 +23,12 @@
       rebuild = "sudo nixos-rebuild switch --flake ~/nixos-config#framework_laptop";  # Replace hostname
     };
   };
+  programs.zsh = {
+    enable = true;
+    shellAliases = {
+      rebuild = "sudo nixos-rebuild switch --flake ~/nixos-config#framework_laptop";  # Replace hostname
+    };
+  };
 
   programs.neovim = {
     enable = true;
