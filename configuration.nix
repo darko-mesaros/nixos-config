@@ -4,6 +4,8 @@
 {
   imports = [
     ./modules/system/users.nix
+    ./modules/system/hyprland.nix
+    #./modules/system/leftwm.nix
   ];
 
   nix = {
@@ -18,12 +20,27 @@
     };
   };
 
+  # Networking
+  networking.networkmanager.enable = true;
+
   # Basic system-wide configuration
   time.timeZone = "US/Pacific";  # Change this
   i18n.defaultLocale = "en_US.UTF-8";
 
   # Allow unfree packages
   nixpkgs.config.allowUnfree = true;
+
+  # rtkit is optional but recommended
+  security.rtkit.enable = true;
+  services.pipewire = {
+    enable = true;
+    alsa.enable = true;
+    alsa.support32Bit = true;
+    pulse.enable = true;
+    # If you want to use JACK applications, uncomment this
+    #jack.enable = true;
+  };
+
 
   # Basic system packages
   environment.systemPackages = with pkgs; [
@@ -34,6 +51,9 @@
     htop
     btop
     direnv
+    elinks
+    w3m
+    pavucontrol
   ];
 
   # Enable services
@@ -46,6 +66,6 @@
     ln -sf /home/darko/nixos-config/flake.nix /etc/nixos/flake.nix
   '';
 
-  system.stateVersion = "24.11";
+  system.stateVersion = "24.05";
 }
 

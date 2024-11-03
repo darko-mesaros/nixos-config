@@ -4,7 +4,13 @@
 
 {
 	imports = [
-	    ./modules/home/neovim.nix
+	    ./modules/home/zsh.nix # TODO: Cleanup this mess
+	    ./modules/home/neovim.nix # TODO: Not yet a 100% there
+      #./modules/home/leftwm.nix
+      ./modules/home/hyprland.nix
+      ./modules/home/waybar.nix
+      ./modules/home/wezterm.nix
+      ./modules/home/fonts.nix
 	];
   home.username = "darko";  # Replace with your username
   home.homeDirectory = "/home/darko";  # Replace with your username
@@ -17,6 +23,8 @@
     lolcat
     eza
     ranger
+    firefox
+    zoxide
   ];
 
   programs.git = {
@@ -31,22 +39,7 @@
       rebuild = "sudo nixos-rebuild switch --flake ~/nixos-config#framework_laptop";  # Replace hostname
     };
   };
-  programs.zsh = {
-    enable = true;
-    shellAliases = {
-      rebuild = "sudo nixos-rebuild switch --flake ~/nixos-config#framework_laptop";  # Replace hostname
-      ll = "eza -l";
-      l = "eza -la";
-      ls = "eza";
-    };
-    initExtra = ''
-      eval "$(direnv hook zsh)"
-    '';
-
-  };
   programs.home-manager.enable = true;
 
-  
-
-  home.stateVersion = "24.11";
+  home.stateVersion = "24.05";
 }

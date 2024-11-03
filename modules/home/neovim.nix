@@ -21,6 +21,8 @@
       rust-analyzer
       pyright
       prettierd
+      # Lua
+      luajitPackages.luacheck
       stylua
       eslint_d
       # Nix

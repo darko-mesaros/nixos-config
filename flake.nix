@@ -9,6 +9,9 @@
       inputs.nixpkgs.follows = "nixpkgs";
     };
 
+    ### Hardware Quirks ###
+    nixos-hardware.url = "github:NixOS/nixos-hardware/master";
+
     ### Neovim Plugins ###
     plugin-noctis-hc = {
       url = "github:iagorrr/noctis-high-contrast.nvim";
@@ -17,7 +20,7 @@
     ### END Neovim Plugins ###
   };
 
-  outputs = { self, nixpkgs, home-manager, plugin-noctis-hc, ... }:
+  outputs = { self, nixpkgs, home-manager, nixos-hardware,  plugin-noctis-hc, ... }:
     let
       system = "x86_64-linux";
       #pkgs = import nixpkgs {inherit system;};
@@ -60,6 +63,8 @@
               # Make our modified pkgs available
               nixpkgs.overlays = [overlay];
             }
+            # Hardware for the Framework laptop 13
+            nixos-hardware.nixosModules.framework-12th-gen-intel
           ];
         };
       };

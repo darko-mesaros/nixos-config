@@ -14,5 +14,6 @@
   # Host-specific packages or services
   environment.systemPackages = with pkgs; [
     # Add host-specific packages here
+    brightnessctl
   ];
 }
