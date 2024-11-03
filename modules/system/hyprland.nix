@@ -37,5 +37,6 @@
     pkgs.kitty
     pkgs.wezterm
     pkgs.rofi-wayland
+    pkgs.rofimoji
   ];
 }

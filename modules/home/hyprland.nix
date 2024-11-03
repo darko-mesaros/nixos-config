@@ -4,14 +4,17 @@
     monitor = ",preferred,auto,1.56667"; # This 1.56667 is for the Framework laptop
     "$mod" = "SUPER";
     "$terminal" = "kitty";
-    "$fileManager" = "dolphin";
+    "$fileManager" = "pcmanfm";
     "$menu" = "rofi -show run";
+    "$emojiMenu" = "rofi -modi 'emoji:rofimoji' -show emoji";
     #exec-once = "waybar &";
     bind = [
       "$mod SHIFT, RETURN, exec, $terminal"
       "$mod, W, killactive"
       "$mod SHIFT, X, exit"
+      "$mod SHIFT, E, exec, $fileManager"
       "$mod, E, exec, $menu"
+      "$mod SHIFT, PERIOD, exec, $emojiMenu"
       "$mod, F, exec, firefox"
     ]
     ++ (

@@ -7,9 +7,9 @@
 	    ./modules/home/zsh.nix # TODO: Cleanup this mess
 	    ./modules/home/neovim.nix # TODO: Not yet a 100% there
       #./modules/home/leftwm.nix
-      ./modules/home/hyprland.nix
-      ./modules/home/waybar.nix
-      ./modules/home/wezterm.nix
+      ./modules/home/hyprland.nix # TODO: Not all keybindings are there yet
+      ./modules/home/waybar.nix # TODO: This needs to be fixed up
+      ./modules/home/wezterm.nix # TODO: Figure out how it works on wayland
       ./modules/home/fonts.nix
 	];
   home.username = "darko";  # Replace with your username
@@ -24,7 +24,9 @@
     eza
     ranger
     firefox
+    brave
     zoxide
+    pcmanfm
   ];
 
   programs.git = {
