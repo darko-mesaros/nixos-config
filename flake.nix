@@ -5,21 +5,48 @@
   inputs = {
     nixpkgs.url = "github:nixos/nixpkgs/nixos-unstable";
     home-manager = {
-      url = "github:nix-community/home-manager";
+      url = "github:nix-community/home-manager/master";
       inputs.nixpkgs.follows = "nixpkgs";
     };
+
+    ### Neovim Plugins ###
+    plugin-noctis-hc = {
+      url = "github:iagorrr/noctis-high-contrast.nvim";
+      flake = false;
+    };
+    ### END Neovim Plugins ###
   };
 
-  outputs = { self, nixpkgs, home-manager, ... }:
+  outputs = { self, nixpkgs, home-manager, plugin-noctis-hc, ... }:
     let
       system = "x86_64-linux";
+      #pkgs = import nixpkgs {inherit system;};
       pkgs = nixpkgs.legacyPackages.${system};
-      lib = nixpkgs.lib;
+      #lib = nixpkgs.lib;
+
+      # Create a custom package for the plugin
+      pluginNoctisHc = pkgs.vimUtils.buildVimPlugin {
+        name = "noctis-hc";
+        src = plugin-noctis-hc;
+      };
+
+      # Create an overlay to make the plugin available
+      overlay = final: prev: {
+        vimPlugins = prev.vimPlugins  // {
+          noctis-hc = pluginNoctisHc;
+        };
+      };
+
+      # Create the mopdified pkgs with our overlay
+      pkgsWithPlugin = import nixpkgs {
+        inherit system;
+        overlays = [overlay];
+      };
     in
     {
       nixosConfigurations = {
         # Replace hostname with your actual hostname
-        framework_laptop = lib.nixosSystem {
+        framework_laptop = nixpkgs.lib.nixosSystem {
           inherit system;
           modules = [
             ./configuration.nix
@@ -29,6 +56,9 @@
               home-manager.useGlobalPkgs = true;
               home-manager.useUserPackages = true;
               home-manager.users.darko = import ./home.nix;  # Replace username
+
+              # Make our modified pkgs available
+              nixpkgs.overlays = [overlay];
             }
           ];
         };

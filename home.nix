@@ -1,7 +1,11 @@
 # ~/nixos-config/home.nix
-{ config, pkgs, ... }:
+{ config, pkgs, inputs, ... }:
+
 
 {
+	imports = [
+	    ./modules/home/neovim.nix
+	];
   home.username = "darko";  # Replace with your username
   home.homeDirectory = "/home/darko";  # Replace with your username
 
@@ -35,14 +39,14 @@
       l = "eza -la";
       ls = "eza";
     };
-  };
+    initExtra = ''
+      eval "$(direnv hook zsh)"
+    '';
 
-  programs.neovim = {
-    enable = true;
-    defaultEditor = true;
-    vimAlias = true;
   };
+  programs.home-manager.enable = true;
+
   
 
-  home.stateVersion = "24.05";
+  home.stateVersion = "24.11";
 }

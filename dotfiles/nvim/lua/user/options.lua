@@ -42,6 +42,9 @@ for k, v in pairs(options) do
   vim.opt[k] = v
 end
 
+-- Instead of impatient.nvim - https://github.com/lewis6991/impatient.nvim
+vim.loader.enable()
+
 -- vim.opt.shortmess = "ilmnrx"                        -- flags to shorten vim messages, see :help 'shortmess'
 vim.opt.shortmess:append "c"                           -- don't give |ins-completion-menu| messages
 vim.opt.iskeyword:append "-"                           -- hyphenated words recognized by searches

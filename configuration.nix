@@ -33,16 +33,19 @@
     curl
     htop
     btop
+    direnv
   ];
 
   # Enable services
   services.openssh.enable = true;
+  # Lorri for nix-shell
+  services.lorri.enable = true;
 
   # Create symlink for rebuilding
   system.activationScripts.flake-link = ''
     ln -sf /home/darko/nixos-config/flake.nix /etc/nixos/flake.nix
   '';
 
-  system.stateVersion = "24.05";
+  system.stateVersion = "24.11";
 }
 
