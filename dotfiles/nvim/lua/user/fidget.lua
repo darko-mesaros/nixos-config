@@ -3,7 +3,6 @@ require("fidget").setup({
     poll_rate = 0.1,               -- How frequently to update progress (seconds)
     suppress_on_insert = false,    -- Suppress new messages while in insert mode
     ignore_done_already = false,   -- Ignore new tasks that are already complete
-    
     display = {
       render_limit = 16,           -- How many LSP messages to show at once
       done_ttl = 3,               -- How long a message should persist after completion
@@ -14,25 +13,21 @@ require("fidget").setup({
         period = 1,              -- Duration of the animation cycle
       },
       progress_style = "WarningMsg",  -- Highlight group for in-progress task
+      progress_ttl = 10,
       group_style = "Title",         -- Highlight group for group name
       icon_style = "Question",       -- Highlight group for group icon
     },
-    
     ignore = {                    -- List of LSP servers to ignore
       "null-ls",
       -- Add any other noisy LSP servers here
     },
-    
     --ignore_progress_msgs = false, -- Ignore progress messages if the server sends too many
   },
-  
   notification = {
     poll_rate = 10,               -- How frequently to check for new notifications
     filter = vim.log.levels.INFO, -- Minimum notifications level
     history_size = 128,           -- Number of notifications to retain in history
-    
     override_vim_notify = false,  -- Use fidget for all notifications, not just LSP
-    
     configs = {                   -- How to configure notification groups
       default = {
         name = "LSP",            -- Default group name
@@ -54,7 +49,6 @@ require("fidget").setup({
       group_separator = "---",   -- Separator between notification groups
       group_separator_hl = "Comment",  -- Highlight group for the separator
     },
-    
     window = {
       normal_hl = "Comment",     -- Highlight group for normal priority
       winblend = 0,             -- Window transparency (0-100)
