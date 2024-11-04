@@ -38,68 +38,74 @@
         };
       };
 
-      # Function to make the NixOS configuration - TEST
-      mkNixosConfiguration = {hostname, extraModules ? [], gui ? true}:
-        nixpkgs.lib.nixosSystem {
-          inherit system;
-          modules = [
-            ./configuration.nix
-            ./hosts/${hostname}
-            home-manager.nixosModules.home-manager
-            {
-              home-manager.useGlobalPkgs = true;
-              home-manager.useUserPackages = true;
-              home-manager.users.darko = import ./home.nix;
-
-            # Pass the gui option to the configuration
-            _module.args.gui = gui;
-            
-            nixpkgs.overlays = [overlay];
-
-            }
-
-          ] ++ extraModules;
-
-        };
-
-      # # Create the mopdified pkgs with our overlay
-      # pkgsWithPlugin = import nixpkgs {
-      #   inherit system;
-      #   overlays = [overlay];
-      # };
-    in
-    { 
-      # TEST 
-      nixosConfigurations = {
-        framework_laptop = mkNixosConfiguration {
-          hostname = "framework_laptop";
-          extraModules = [
-            nixos-hardware.nixosModules.framework-12th-gen-intel
-          ];
-          gui = true;
-        };
-      };
-      # nixosConfigurations = {
-      #   # Replace hostname with your actual hostname
-      #   framework_laptop = nixpkgs.lib.nixosSystem {
+      # # Function to make the NixOS configuration - TEST
+      # mkNixosConfiguration = {hostname, extraModules ? [], gui ? true}:
+      #   nixpkgs.lib.nixosSystem {
       #     inherit system;
       #     modules = [
       #       ./configuration.nix
-      #       ./hosts/framework_laptop
+      #       ./hosts/${hostname}
       #       home-manager.nixosModules.home-manager
       #       {
       #         home-manager.useGlobalPkgs = true;
       #         home-manager.useUserPackages = true;
-      #         home-manager.users.darko = import ./home.nix;  # Replace username
+      #         home-manager.users.darko = import ./home.nix;
       #
-      #         # Make our modified pkgs available
-      #         nixpkgs.overlays = [overlay];
+      #       # Pass the gui option to the configuration
+      #       _module.args.gui = gui;
+      #       
+      #       nixpkgs.overlays = [overlay];
+      #
       #       }
-      #       # Hardware for the Framework laptop 13
+      #
+      #     ] ++ extraModules;
+      #
+      #   };
+
+      # Create the mopdified pkgs with our overlay
+      pkgsWithPlugin = import nixpkgs {
+        inherit system;
+        overlays = [overlay];
+      };
+    in
+    { 
+      # # TEST 
+      # nixosConfigurations = {
+      #   framework_laptop = mkNixosConfiguration {
+      #     hostname = "framework_laptop";
+      #     extraModules = [
       #       nixos-hardware.nixosModules.framework-12th-gen-intel
       #     ];
+      #     gui = true;
+      #   };
+      #
+      #   # Server
+      #   nix_devbox = mkNixosConfiguration {
+      #     hostname = "nix_devbox";
+      #     gui = false;
       #   };
       # };
+      nixosConfigurations = {
+        # Replace hostname with your actual hostname
+        framework_laptop = nixpkgs.lib.nixosSystem {
+          inherit system;
+          modules = [
+            ./configuration.nix
+            ./hosts/framework_laptop
+            home-manager.nixosModules.home-manager
+            {
+              home-manager.useGlobalPkgs = true;
+              home-manager.useUserPackages = true;
+              home-manager.users.darko = import ./home.nix;  # Replace username
+
+              # Make our modified pkgs available
+              nixpkgs.overlays = [overlay];
+            }
+            # Hardware for the Framework laptop 13
+            nixos-hardware.nixosModules.framework-12th-gen-intel
+          ];
+        };
+      };
     };
 }
 

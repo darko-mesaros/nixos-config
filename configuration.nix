@@ -1,5 +1,5 @@
 # ~/nixos-config/configuration.nix
-{ config, pkgs, ... }:
+{ config, pkgs,  ... }:
 
 {
   imports = [
