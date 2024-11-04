@@ -38,7 +38,6 @@
       noctis-hc # THIS IS CUSTOM - if it becomes available as a package remove it
       # END COLORSCHEMES
       plenary-nvim
-      nvim-autopairs
       nvim-ts-context-commentstring
       nvim-web-devicons
       bufdelete-nvim # TODO: Figure out if this needs to be configured
@@ -63,7 +62,9 @@
       trouble-nvim
       lsp-status-nvim
       vim-illuminate
-      actions-preview-nvim
+      # Misc
+      nui-nvim # Needed for noice
+      nvim-notify # Needed for noice
       # Noice - UI for messages, cmdline and popupmenu
       {
         plugin = noice-nvim;
@@ -144,10 +145,30 @@
         plugin = fidget-nvim;
         config = toLuaFile ./../../dotfiles/nvim/lua/user/fidget.lua;
       }
+      # Action preview for LSP
+      {
+        plugin = actions-preview-nvim;
+        config = toLuaFile ./../../dotfiles/nvim/lua/user/actionspreview.lua;
+      }
+      # For CMP and Treesitter
+      {
+        plugin = nvim-autopairs;
+        config = toLuaFile ./../../dotfiles/nvim/lua/user/autopairs.lua;
+      }
       # COLORSCHEMES
       {
         plugin = gruvbox-nvim;
         config = "colorscheme noctishc";
+      }
+      # Treesitter
+      {
+        plugin = nvim-treesitter.withAllGrammars;
+        config = toLuaFile ./../../dotfiles/nvim/lua/user/treesitter.lua;
+      }
+      # Gitsigns
+      {
+        plugin = gitsigns-nvim;
+        config = toLuaFile ./../../dotfiles/nvim/lua/user/gitsigns.lua;
       }
     ];
 

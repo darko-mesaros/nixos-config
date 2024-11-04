@@ -4,7 +4,8 @@ if not status_ok then
 end
 
 configs.setup({
-  ensure_installed = { "bash", "c", "javascript", "json", "lua", "python", "typescript", "tsx", "css", "rust", "java", "yaml", "markdown", "markdown_inline", "vim", "regex", "toml" }, -- one of "all" or a list of languages
+  -- This has been removed due to NixOS (home-manager) but is kept for legacy reasons
+  --ensure_installed = { "bash", "c", "javascript", "json", "lua", "python", "typescript", "tsx", "css", "rust", "java", "yaml", "markdown", "markdown_inline", "vim", "regex", "toml" }, -- one of "all" or a list of languages
   sync_install = false,
 	ignore_install = { "phpdoc" }, -- List of parsers to ignore installing
 	highlight = {
