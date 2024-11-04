@@ -1,0 +1,9 @@
+{ config, lib, pkgs, ...}:
+{
+  home.packages = with pkgs; [
+    discord
+    signal-desktop
+    telegram-desktop
+  ];
+
+}
