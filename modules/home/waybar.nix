@@ -26,6 +26,7 @@
         "cpu"
         "memory"
         "temperature"
+        "battery"
         "clock"
         "tray"
       ];

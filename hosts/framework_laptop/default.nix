@@ -11,6 +11,14 @@
   boot.loader.systemd-boot.enable = true;
   boot.loader.efi.canTouchEfiVariables = true;
 
+  # BIOS Updates
+  services = {
+    fwupd.enable = true;
+    fprintd.enable = true;
+    #fprintd.tod.enable = true;
+    power-profiles-daemon.enable = true;
+  };
+
   # Host-specific packages or services
   environment.systemPackages = with pkgs; [
     # Add host-specific packages here

@@ -4,9 +4,10 @@
 {
   services.xserver = {
     enable = true;
-    displayManager.gdm = {
+    displayManager.sddm = {
       enable = true;
-      wayland = true;
+      wayland.enable = true;
+
     };
   };
   programs.hyprland = {

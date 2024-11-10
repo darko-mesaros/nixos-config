@@ -41,6 +41,8 @@
     #jack.enable = true;
   };
 
+  fonts.fontDir.enable = true;
+
 
   # Basic system packages
   environment.systemPackages = with pkgs; [
@@ -54,12 +56,22 @@
     elinks
     w3m
     pavucontrol
+    usbutils
+    lshw
+    polkit_gnome
   ];
 
   # Enable services
   services.openssh.enable = true;
   # Lorri for nix-shell
   services.lorri.enable = true;
+
+  # FPRINTD
+  services.dbus.enable = true;
+  services.dbus.packages = [pkgs.fprintd];
+
+  security.polkit.enable = true;
+
 
   # Create symlink for rebuilding
   system.activationScripts.flake-link = ''

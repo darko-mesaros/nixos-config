@@ -13,6 +13,7 @@
       ./modules/home/chat.nix # TODO: Configure IRC if needed
       ./modules/home/fonts.nix
       ./modules/home/style.nix
+      ./modules/home/security.nix
     ];
 
     home = {
@@ -31,7 +32,7 @@
         # GUI # TODO: Figure out how to evaluate this on SSH only systems
         firefox
         brave
-        pcmanfm
+      pcmanfm
       ];
     };
 

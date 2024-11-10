@@ -1,3 +1,4 @@
+{pkgs, ...}:
 {
 
   wayland.windowManager.hyprland.enable = true;
@@ -7,7 +8,7 @@
     # Built in eDP-1
     monitor = [
       "desc:BOE 0x095F,preferred,auto,1.56667" # This 1.56667 is for the Framework laptop
-      "desc:GIGA-BYTE TECHNOLOGY CO. LTD. Gigabyte M32U 21491B000014,3840x2160@144,auto,1.6" # Big Gigabyte M32 4K@144hz
+      "desc:GIGA-BYTE TECHNOLOGY CO. LTD. Gigabyte M32U 21491B000014,3840x2160@144,auto,1.25" # Big Gigabyte M32 4K@144hz
     ];
     ### END SCREENS ###
     ### ENV Variables###
@@ -24,7 +25,10 @@
     "$menu" = "rofi -show run";
     "$emojiMenu" = "rofi -modi 'emoji:rofimoji' -show emoji";
     ### EXEC ###
-    exec-once = "hyprctl setcursor Bibata-Modern-Ice 24";
+    exec-once = [
+      "hyprctl setcursor Bibata-Modern-Ice 24"
+      "${pkgs.polkit_gnome}/libexec/polkit-gnome-authentication-agent-1 &"
+    ];
     ### BINDS ###
     binds = {
       allow_workspace_cycles = true;
@@ -81,8 +85,10 @@
       ",XF86MonBrightnessUp, exec, brightnessctl s 10%+"
       ",XF86MonBrightnessDown, exec, brightnessctl s 10%-"
     ];
-    ### BINDS ###
-
+    ### END BINDS ###
+    cursor = {
+      no_hardware_cursors = true;
+    };
     general = {
       gaps_in = 2;
       gaps_out = 5;

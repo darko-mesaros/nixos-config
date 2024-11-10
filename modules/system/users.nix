@@ -7,6 +7,8 @@
     extraGroups = [ 
       "wheel" 
       "networkmanager"
+      "input"
+      "plugdev"
       # Add more groups as needed
     ];
     # You can add more user-specific settings here
