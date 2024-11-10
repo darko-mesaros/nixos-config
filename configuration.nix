@@ -4,8 +4,9 @@
 {
   imports = [
     ./modules/system/users.nix
-    ./modules/system/hyprland.nix
-    #./modules/system/leftwm.nix
+    #./modules/system/hyprland.nix
+    ./modules/system/leftwm.nix
+    ./modules/system/power.nix
   ];
 
   nix = {
