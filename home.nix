@@ -11,6 +11,7 @@
     #./modules/home/waybar.nix # TODO: This needs to be fixed up
       ./modules/home/wezterm.nix # TODO: Figure out how it works on wayland
       ./modules/home/chat.nix # TODO: Configure IRC if needed
+      ./modules/home/internet.nix
       ./modules/home/fonts.nix
       ./modules/home/style.nix
       ./modules/home/security.nix
